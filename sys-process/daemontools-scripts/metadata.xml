@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>c59ccef70aa1387612c4@subdimension.ro</email>
+		<name>Petre Rodan</name>
+	</maintainer>
+	<longdescription>
+		Gentoo specific daemontools wrapper scripts.
+	</longdescription>
+	<use>
+		<flag name="withsamplescripts">add sample init scripts</flag>
+	</use>
+</pkgmetadata>
