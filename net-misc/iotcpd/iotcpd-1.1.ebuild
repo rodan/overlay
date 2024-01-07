@@ -11,10 +11,8 @@ S="${WORKDIR}/${P}/server"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE=""
 
 DEPEND="x11-misc/makedepend"
-RDEPEND=""
 
 src_install() {
 	doman "${S}/../doc/iotcpd.1"

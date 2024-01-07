@@ -6,4 +6,7 @@
 	<name>Petre Rodan</name>
 </maintainer>
 	<longdescription>a stdio to tcp redirector daemon</longdescription>
+	<upstream>
+		<remote-id type="github">rodan/laboule</remote-id>
+	</upstream>
 </pkgmetadata>

@@ -1,7 +1,7 @@
 # Copyright 2019-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="EGD-compatible daemon for TrueRNG devices"
 HOMEPAGE="https://github.com/rodan/cwiticald/"
@@ -11,7 +11,6 @@ S="${WORKDIR}/${P}/src"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE=""
 
 DEPEND="x11-misc/makedepend"
 RDEPEND="

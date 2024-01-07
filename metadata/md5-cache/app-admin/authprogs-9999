@@ -1,0 +1,15 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install unpack
+DEPEND=virtual/ssh
+DESCRIPTION=ssh forced command authenticator
+EAPI=8
+HOMEPAGE=https://github.com/11001100/authprogs
+INHERIT=git-r3
+KEYWORDS=~amd64 ~arm ~arm64 ~x86
+LICENSE=BSD
+PROPERTIES=live
+RDEPEND=virtual/ssh
+RESTRICT=mirror
+SLOT=0
+_eclasses_=git-r3	86fa1f157b70b9d2ff340c4633b1cf4b
+_md5_=331fde9b87f9931b43d8b50dd2bfcd48

@@ -1,9 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
-
-#inherit eutils
+EAPI=8
 
 DESCRIPTION="the iptables chain manager for impolite IPs"
 HOMEPAGE="https://github.com/rodan/laboule"
@@ -11,10 +9,8 @@ SRC_URI="https://github.com/rodan/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64 x86"
-IUSE=""
+KEYWORDS="amd64 arm arm64 x86"
 
-DEPEND=""
 RDEPEND="
 	acct-user/laboule
 	acct-group/laboule
@@ -33,8 +29,8 @@ src_install() {
 	cp -R "${S}/service/laboule/" "${D}/var/service/"
 	cp -R "${S}/service/laboule-tarpit/" "${D}/var/service/"
 
-	dodir /etc/laboule
 	insinto /etc/laboule
+	dodir /etc/laboule
 	newins usr/doc/jail.ignore.template jail.ignore
 	newins usr/doc/laboule.conf.template laboule.conf
 	newins usr/doc/tarpit.ignore.template tarpit.ignore

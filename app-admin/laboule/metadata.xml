@@ -2,8 +2,11 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <maintainer type="person">
-	<email>2b4eda@subdimension.ro</email>
+	<email>petre.rodan@subdimension.ro</email>
 	<name>Petre Rodan</name>
 </maintainer>
 	<longdescription>iptables-based banning helper daemon</longdescription>
+	<upstream>
+		<remote-id type="github">rodan/laboule</remote-id>
+	</upstream>
 </pkgmetadata>

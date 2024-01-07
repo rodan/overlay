@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="person">
-	<email>petre.rodan@simplex.ro</email>
-	<name>Petre Rodan</name>
-</maintainer>
-	<longdescription>ssh forced-command helper</longdescription>
+	<maintainer type="person">
+		<email>petre.rodan@subdimension.ro</email>
+		<name>Petre Rodan</name>
+	</maintainer>
+	<longdescription>ssh forced-command wrapper. stick command="/usr/bin/authprogs" into authorized_keys and configure ~/.ssh/authprogs.conf</longdescription>
+	<upstream>
+		<remote-id type="github">11001100/authprogs</remote-id>
+	</upstream>
 </pkgmetadata>

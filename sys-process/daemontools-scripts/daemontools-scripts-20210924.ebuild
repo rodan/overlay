@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit toolchain-funcs
+inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="gentoo specific daemontools wrapper scripts"
 HOMEPAGE="https://fixme"
@@ -15,7 +15,6 @@ KEYWORDS="amd64 arm x86"
 IUSE="static selinux withsamplescripts"
 
 RDEPEND="selinux? ( sys-apps/policycoreutils )"
-DEPEND=""
 RESTRICT="mirror"
 
 src_compile() {

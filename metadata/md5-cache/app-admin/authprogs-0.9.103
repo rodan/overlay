@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install
+DEPEND=virtual/ssh
+DESCRIPTION=ssh forced command authenticator
+EAPI=7
+HOMEPAGE=https://sourceforge.net/projects/authprogs/
+KEYWORDS=amd64 x86
+LICENSE=BSD
+RDEPEND=virtual/ssh
+RESTRICT=mirror
+SLOT=0
+SRC_URI=mirror://sourceforge/authprogs/authprogs-0.9.103.tar.bz2
+_md5_=9d1b624503223202c6157c9497790e6d
