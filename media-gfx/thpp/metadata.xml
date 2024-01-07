@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+	<email>petre.rodan@subdimension.ro</email>
+	<name>Petre Rodan</name>
+</maintainer>
+	<longdescription>thpp - viewer and analyzer of infrared images</longdescription>
+	<upstream>
+		<remote-id type="github">rodan/thpp</remote-id>
+	</upstream>
+</pkgmetadata>
