@@ -49,10 +49,6 @@ S=${WORKDIR}/${MY_P}/src
 
 src_unpack() {
 	unpack ${MY_P}.tar.gz || die "Unpacking ${P}.tar.gz failed"
-
-	# Ogre 1.12.9 includes imgui, but as a submodule, it is not included
-	# in the release. The build system tries to download it, that may
-	# fail and so we are doing it ourselves.
 	cd "${S}/../lib" || die "Unpack incomplete"
 	unpack ${IMGUI_P}.tar.gz || die "Unpacking ${IMGUI_P}.tar.gz failed"
 	unpack ${IMPLOT_P}.tar.gz || die "Unpacking ${IMPLOT_P}.tar.gz failed"

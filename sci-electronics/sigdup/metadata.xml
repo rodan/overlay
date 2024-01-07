@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+	<email>petre.rodan@subdimension.ro</email>
+	<name>Petre Rodan</name>
+</maintainer>
+	<longdescription>software that takes PulseView digital signal captures as input and re-plays them on a MSP430FR5994</longdescription>
+	<upstream>
+		<remote-id type="github">rodan/sigdup</remote-id>
+	</upstream>
+</pkgmetadata>

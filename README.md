@@ -8,6 +8,7 @@ package | ver | details
 [media-gfx/thpp](https://github.com/rodan/thpp) | 20240107 | thermal processing panel
 [net-misc/iotcpd](https://github.com/rodan/iotcpd) | 1.1 | a stdio to tcp redirector daemon
 [sys-apps/cwiticald](https://github.com/rodan/cwiticald) | 1.3 | EGD-compatible daemon for TrueRNG devices
+[sci-electronics/sigdup](https://github.com/rodan/sigdup) | 20240107 | software that takes PulseView digital signal captures as input and re-plays them on a MSP430FR5994
 [sys-process/daemontools-scripts](https://github.com/rodan/daemontools-scripts) | 20210924 | Gentoo specific daemontools wrapper scripts
 [app-admin/authprogs](https://github.com/11001100/authprogs) | 0.9.201 | ssh forced command wrapper
 [app-portage/epm](https://github.com/fuzzyray/epm) | 1.40 | rpm workalike for Gentoo Linux
