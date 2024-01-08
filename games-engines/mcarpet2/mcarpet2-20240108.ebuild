@@ -36,7 +36,7 @@ SDL2_CMAKE_MOD_P="${SDL2_CMAKE_MOD_PN}-${SDL2_CMAKE_MOD_PV}"
 
 MY_PN="magic_carpet_2"
 #MY_PV="${PV}"
-MY_PV="9018dc723849e89f081821873e4325af5b340275"
+MY_PV="99731070126e9b0b080059c4024b9edde84e449d"
 MY_P="${PN}-${MY_PV}"
 
 DESCRIPTION="recode of Bullfrog's Magic Carpet 2 game"
@@ -63,7 +63,6 @@ DEPEND="media-libs/libglvnd
 	media-libs/libpng
 	dev-libs/boost
 	dev-libs/spdlog
-	net-misc/rsync
 "
 RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_PN}-${MY_PV}" #/src"
