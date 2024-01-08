@@ -5,7 +5,7 @@ An overlay that contains ebuilds for my open-source projects and a safe heaven f
 package | ver | details
 --- | --- | ---
 [app-admin/laboule](https://github.com/rodan/laboule) | 20210924 | iptables-based banning helper daemon
-[games-engines/mcarpet2](https://github.com/rodan/magic_carpet_2) | 20120924 | recode of Buffrog's Magic Carpet 2 game now with OpenAL-based directional sounds and support for moders controllers and joysticks
+[games-engines/mcarpet2](https://github.com/rodan/magic_carpet_2) | 20120924 | recode of Buffrog's Magic Carpet 2 game now with OpenAL-based directional sounds and support for modern controllers and joysticks
 [media-gfx/thpp](https://github.com/rodan/thpp) | 20240107 | thermal processing panel - viewer and analyzer of infrared images
 [net-misc/iotcpd](https://github.com/rodan/iotcpd) | 1.1 | a stdio to tcp redirector daemon
 [sys-apps/cwiticald](https://github.com/rodan/cwiticald) | 1.3 | EGD-compatible daemon for TrueRNG devices
