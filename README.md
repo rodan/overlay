@@ -7,10 +7,10 @@ package | ver | details
 [app-admin/laboule](https://github.com/rodan/laboule) | 20210924 | iptables-based banning helper daemon
 [app-dicts/dicpoli](https://github.com/rodan/dictionar_poliglot_de_aeronautica) | 20240109 | multilingual aeronautical dictionary compatible with dictd, stardict and kindle (de en es fr it ro) 3759 terms
 [games-engines/mcarpet2](https://github.com/rodan/magic_carpet_2) | 20240108 | recode of Buffrog's Magic Carpet 2 game now with OpenAL-based directional sounds and support for modern controllers and joysticks
-[media-gfx/thpp](https://github.com/rodan/thpp) | 20240107 | thermal processing panel - viewer and analyzer of infrared images
+[media-gfx/thpp](https://github.com/rodan/thpp) | 20240107 | thermal processing panel - viewer and analyzer of infrared images compatible with FLIR and IRTIS cameras
 [net-misc/iotcpd](https://github.com/rodan/iotcpd) | 1.1 | a stdio to tcp redirector daemon
-[sys-apps/cwiticald](https://github.com/rodan/cwiticald) | 1.3 | EGD-compatible daemon for TrueRNG devices
-[sci-electronics/sigdup](https://github.com/rodan/sigdup) | 20240107 | software that takes PulseView digital signal captures as input and re-plays them on a MSP430FR5994
+[sys-apps/cwiticald](https://github.com/rodan/cwiticald) | 1.3 | entropy gathering daemon for TrueRNG devices
+[sci-electronics/sigdup](https://github.com/rodan/sigdup) | 20240107 | software that takes PulseView digital signal captures as input and re-plays them on the pins of a MSP430FR5994 (up to 8 channels)
 [sys-process/daemontools-scripts](https://github.com/rodan/daemontools-scripts) | 20210924 | Gentoo specific daemontools wrapper scripts
 [app-admin/authprogs](https://github.com/11001100/authprogs) | 0.9.201 | ssh forced command wrapper
 [app-portage/epm](https://github.com/fuzzyray/epm) | 1.40 | rpm workalike for Gentoo Linux
