@@ -5,7 +5,6 @@
 	<email>petre.rodan@subdimension.ro</email>
 	<name>Petre Rodan</name>
 </maintainer>
-	<longdescription>iptables-based banning helper daemon</longdescription>
 	<upstream>
 		<remote-id type="github">rodan/laboule</remote-id>
 	</upstream>

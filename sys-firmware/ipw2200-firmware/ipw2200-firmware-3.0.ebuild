@@ -12,7 +12,6 @@ SRC_URI="http://distfiles.simplex.ro/${MY_P}.tgz"
 LICENSE="ipw2200-fw"
 SLOT="0"
 KEYWORDS="amd64 x86"
-IUSE=""
 
 S=${WORKDIR}/${MY_P}
 

@@ -8,18 +8,13 @@ PYTHON_COMPAT=( pypy3 python3_{10..12} )
 
 inherit distutils-r1 pypi
 
-DESCRIPTION="YAML 1.2 loader/dumper package for Python"
-HOMEPAGE="
-	https://sourceforge.net/p/ruamel-yaml/code/ci/default/tree/
-	https://pypi.org/project/ruamel.yaml
-"
+DESCRIPTION="a copy of libfdt from the upstream kernel dtc project"
+HOMEPAGE="https://pypi.org/project/pylibfdt/"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 arm arm64 riscv x86"
+KEYWORDS="amd64"
 IUSE="doc"
-
-RDEPEND=""
 
 python_install_all() {
 	use doc && local HTML_DOCS=( docs/. )

@@ -16,10 +16,8 @@ HOMEPAGE="
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 arm arm64 riscv x86"
+KEYWORDS="amd64"
 IUSE="doc"
-
-RDEPEND=""
 
 python_install_all() {
 	use doc && local HTML_DOCS=( docs/. )

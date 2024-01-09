@@ -5,7 +5,6 @@
 	<email>petre.rodan@subdimension.ro</email>
 	<name>Petre Rodan</name>
 </maintainer>
-	<longdescription>EGD-compatible daemon for TrueRNG devices</longdescription>
 	<upstream>
 		<remote-id type="github">rodan/cwiticald</remote-id>
 	</upstream>

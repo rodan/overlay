@@ -16,7 +16,7 @@ else
 	S="${WORKDIR}"/${PN}-${MY_PV}
 
 	if [[ ${PV} != *_pre* ]] ; then
-		KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
+		KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 	fi
 fi
 
@@ -58,10 +58,7 @@ RDEPEND="
 	acct-group/usb
 	acct-group/video
 	!sys-apps/systemd-utils[udev]
-	!sys-fs/udev
-	!sys-apps/systemd
-	!sys-apps/hwids[udev]
-"
+	!sys-apps/systemd"
 BDEPEND="
 	dev-util/gperf
 	virtual/os-headers

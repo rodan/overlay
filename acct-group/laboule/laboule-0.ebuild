@@ -7,3 +7,4 @@ inherit acct-group
 
 DESCRIPTION="group for laboule"
 ACCT_GROUP_ID=196
+KEYWORDS="amd64 arm arm64 x86"

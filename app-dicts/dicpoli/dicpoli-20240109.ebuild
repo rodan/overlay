@@ -16,14 +16,14 @@ SRC_URI="https://github.com/rodan/${MY_PN}/archive/${MY_PV}.tar.gz -> ${MY_P}.ta
 
 LICENSE="CC0-1.0"
 SLOT="0"
-KEYWORDS="amd64 arm arm64 x86"
+KEYWORDS="amd64"
 IUSE="l10n_de l10n_en l10n_es l10n_fr l10n_it l10n_ro dict stardict"
 
 DEPEND="dev-db/sqlite
 dict? ( app-text/dictd )
 "
 RDEPEND="${DEPEND}"
-REQUIRED_USE="( || ( dict stardict ) )
+REQUIRED_USE="|| ( dict stardict )
 ( || ( l10n_de l10n_en l10n_es l10n_fr l10n_it l10n_ro ) )
 "
 S="${WORKDIR}/${MY_PN}-${MY_PV}/src"

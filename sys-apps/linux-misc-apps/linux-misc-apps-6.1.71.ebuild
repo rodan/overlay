@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools flag-o-matic linux-info toolchain-funcs
+inherit autotools flag-o-matic linux-info
 
 DESCRIPTION="Misc tools bundled with kernel sources"
 HOMEPAGE="https://kernel.org/"
@@ -69,8 +69,10 @@ TARGETS_SIMPLE=(
 	usr/gen_init_cpio.c
 	# Broken:
 	#tools/lguest/lguest.c # fails to compile
-	#tools/vm/page-types.c # page-types.c:(.text+0xe2b): undefined reference to `debugfs__mount', not defined anywhere
-	#tools/net/bpf_jit_disasm.c # /usr/include/x86_64-pc-linux-gnu/bfd.h:35:2: error: #error config.h must be included before this header
+	#tools/vm/page-types.c # page-types.c:(.text+0xe2b):
+	#  undefined reference to `debugfs__mount', not defined anywhere
+	#tools/net/bpf_jit_disasm.c # /usr/include/x86_64-pc-linux-gnu/bfd.h:35:2:
+	# error: #error config.h must be included before this header
 )
 # tools/vm/page-types.c - broken, header path issue
 # tools/hv/hv_kvp_daemon.c - broken in 3.7 by missing linux/hyperv.h userspace
@@ -93,7 +95,6 @@ TARGET_MAKE_SIMPLE=(
 # tools/usb - testcases only
 # tools/virtio - testcaes only
 
-	#for _pattern in {Documentation,scripts,tools,usr,include,lib,"arch/*/include",Makefile,Kbuild,Kconfig}; do
 src_unpack() {
 	unpack ${LINUX_SOURCES}
 

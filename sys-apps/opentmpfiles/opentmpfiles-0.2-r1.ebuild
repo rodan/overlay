@@ -11,7 +11,7 @@ if [[ ${PV} = 9999* ]]; then
 else
 	SRC_URI="https://github.com/openrc/${PN}/archive/${PV}.tar.gz ->
 		${P}.tar.gz"
-	KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv ~s390 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x64-solaris"
+	KEYWORDS="amd64 arm arm64 x86"
 fi
 
 DESCRIPTION="A standalone utility to process systemd-style tmpfiles.d files"
@@ -22,7 +22,6 @@ SLOT="0"
 IUSE="selinux"
 
 RDEPEND="
-	!<sys-apps/openrc-0.23
 	selinux? ( sec-policy/selinux-base-policy )"
 
 src_prepare() {

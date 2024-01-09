@@ -7,3 +7,4 @@ inherit acct-group
 
 DESCRIPTION="group for RNG daemons"
 ACCT_GROUP_ID=210
+KEYWORDS="amd64 arm arm64 x86"

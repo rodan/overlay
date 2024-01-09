@@ -8,5 +8,6 @@ inherit acct-user
 DESCRIPTION="user for RNG daemons"
 ACCT_USER_ID=196
 ACCT_USER_GROUPS=( laboule )
+KEYWORDS="amd64 arm arm64 x86"
 
 acct-user_add_deps
