@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+	<email>petre.rodan@subdimension.ro</email>
+	<name>Petre Rodan</name>
+</maintainer>
+	<use>
+		<flag name="dict">dictionary data for dict</flag>
+		<flag name="stardict">dictionary data for stardict</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">rodan/dictionar_poliglot_de_aeronautica</remote-id>
+	</upstream>
+</pkgmetadata>
