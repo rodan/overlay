@@ -2,6 +2,20 @@
 
 An overlay that contains ebuilds for my open-source projects and a safe heaven for packages that were ruthlessly axed from the main Gentoo portage tree.
 
+recommended ```/etc/portage/repos.conf/peec.conf``` setup:
+
+```
+[peec]
+location = /local/portage/overlay
+sync-type = git
+sync-uri = https://github.com/rodan/overlay.git
+sync-git-verify-commit-signature = yes
+sync-openpgp-key-path = /usr/share/openpgp-keys/petrerodan.gpg
+```
+
+My gnupg key is available via [WKD](https://wiki.gnupg.org/WKD) [here](https://openpgpkey.subdimension.ro/.well-known/openpgpkey/subdimension.ro/hu/w6rzxnjwt1aag7tjxgi19j844woafo1j?l=petre.rodan).
+
+
 package | details
 --- | ---
 [app-admin/laboule](https://github.com/rodan/laboule) | iptables-based banning helper daemon
