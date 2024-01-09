@@ -15,9 +15,7 @@ else
 	SRC_URI="https://github.com/eudev-project/eudev/releases/download/v${MY_PV}/${PN}-${MY_PV}.tar.gz"
 	S="${WORKDIR}"/${PN}-${MY_PV}
 
-	if [[ ${PV} != *_pre* ]] ; then
-		KEYWORDS="~amd64 ~arm ~arm64 ~x86"
-	fi
+	KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 fi
 
 DESCRIPTION="Linux dynamic and persistent device naming support (aka userspace devfs)"
