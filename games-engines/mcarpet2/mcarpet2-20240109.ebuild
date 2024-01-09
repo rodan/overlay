@@ -35,8 +35,8 @@ SDL2_CMAKE_MOD_PV="ad006a3daae65a612ed87415037e32188b81071e"
 SDL2_CMAKE_MOD_P="${SDL2_CMAKE_MOD_PN}-${SDL2_CMAKE_MOD_PV}"
 
 MY_PN="magic_carpet_2"
-#MY_PV="${PV}"
-MY_PV="99731070126e9b0b080059c4024b9edde84e449d"
+MY_PV="${PV}"
+#MY_PV="99731070126e9b0b080059c4024b9edde84e449d"
 MY_P="${PN}-${MY_PV}"
 
 DESCRIPTION="recode of Bullfrog's Magic Carpet 2 game"
@@ -63,6 +63,11 @@ DEPEND="media-libs/libglvnd
 	media-libs/libpng
 	dev-libs/boost
 	dev-libs/spdlog
+	net-misc/wget
+	app-arch/tar
+	app-arch/p7zip
+	app-cdr/bchunk
+	app-cdr/cdrdao
 "
 RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_PN}-${MY_PV}" #/src"
@@ -131,4 +136,9 @@ src_install() {
 	exeinto /usr/bin
 	doexe "${S}/assets/scripts/mcarpet2"
 	doexe "${S}/assets/scripts/mcarpet2_install.sh"
+
+	dodoc "${S}/ChangeLog"
+	dodoc "${S}/README.md"
+	dodoc "${S}/README_OpenAL"
+	dodoc "${S}/README_controllers"
 }
