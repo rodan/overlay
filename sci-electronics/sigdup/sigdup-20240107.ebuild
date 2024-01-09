@@ -28,5 +28,7 @@ src_prepare() {
 
 src_install() {
 	exeinto /usr/bin/
-	doexe "${S}/${PN}"
+	doexe "${PN}"
+	doman "../doc/sigdup-firmware.1"
+	doman "../doc/sigdup.1"
 }
