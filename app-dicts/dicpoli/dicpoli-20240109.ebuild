@@ -23,7 +23,7 @@ DEPEND="dev-db/sqlite
 dict? ( app-text/dictd )
 "
 RDEPEND="${DEPEND}"
-REQUIRED_USE="|| ( dict stardict )
+REQUIRED_USE=" ( || ( dict stardict ) )
 ( || ( l10n_de l10n_en l10n_es l10n_fr l10n_it l10n_ro ) )
 "
 S="${WORKDIR}/${MY_PN}-${MY_PV}/src"
