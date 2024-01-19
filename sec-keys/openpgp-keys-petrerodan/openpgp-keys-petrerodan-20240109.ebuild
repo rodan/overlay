@@ -15,5 +15,5 @@ S=${WORKDIR}
 
 src_install() {
 	insinto /usr/share/openpgp-keys
-	doins "${DISTDIR}/${P}.gpg"
+	newins "${DISTDIR}"/${P}.gpg ${PN##openpgp-keys-}.gpg
 }
