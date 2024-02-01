@@ -1,0 +1,190 @@
+diff -upr Shorewall.orig/Perl/Shorewall/Chains.pm Shorewall/Perl/Shorewall/Chains.pm
+--- Shorewall.orig/Perl/Shorewall/Chains.pm	2020-09-25 01:02:15.000000000 +0300
++++ Shorewall/Perl/Shorewall/Chains.pm	2024-02-01 05:59:15.724214272 +0200
+@@ -8762,8 +8762,8 @@ sub save_docker_rules($) {
+ 
+     emit( qq(if [ -n "\$g_docker" ]; then),
+ 	  qq(    $tool -t nat -S DOCKER | tail -n +2 > \${VARDIR}/.nat_DOCKER),
+-	  qq(    $tool -t nat -S OUTPUT | tail -n +2 | fgrep DOCKER > \${VARDIR}/.nat_OUTPUT),
+-	  qq(    $tool -t nat -S POSTROUTING | tail -n +2 | fgrep -v SHOREWALL | fgrep -v LIBVIRT > \${VARDIR}/.nat_POSTROUTING),
++	  qq(    $tool -t nat -S OUTPUT | tail -n +2 | grep -F DOCKER > \${VARDIR}/.nat_OUTPUT),
++	  qq(    $tool -t nat -S POSTROUTING | tail -n +2 | grep -F -v SHOREWALL | grep -F -v LIBVIRT > \${VARDIR}/.nat_POSTROUTING),
+ 	  qq(    $tool -t filter -S DOCKER | tail -n +2 > \${VARDIR}/.filter_DOCKER),
+ 	  qq(    rm -f \${VARDIR}/.filter_DOCKER-*),
+ 	  qq(    [ -n "\$g_dockeringress"  ] && $tool -t filter -S DOCKER-INGRESS   | tail -n +2 > \${VARDIR}/.filter_DOCKER-INGRESS),
+@@ -8780,7 +8780,7 @@ sub save_docker_rules($) {
+     if ( known_interface( $bridge ) ) {
+ 	emit( qq(    $tool -t filter -S FORWARD | grep '^-A FORWARD.*[io] br-[a-z0-9]\\{12\\}' > \${VARDIR}/.filter_FORWARD) );
+     } else {
+-	emit( qq(    $tool -t filter -S FORWARD | egrep '^-A FORWARD.*[io] ($bridge|br-[a-z0-9]{12})' > \${VARDIR}/.filter_FORWARD) );
++	emit( qq(    $tool -t filter -S FORWARD | grep -E '^-A FORWARD.*[io] ($bridge|br-[a-z0-9]{12})' > \${VARDIR}/.filter_FORWARD) );
+     }
+ 
+     emit( q(    [ -s ${VARDIR}/.filter_FORWARD ] || rm -f ${VARDIR}/.filter_FORWARD),
+@@ -8825,7 +8825,7 @@ else
+ fi
+ 
+ if chain_exists dynamic; then
+-    $tool -S dynamic | tail -n +2 | fgrep -v -- '-j ACCEPT' > \${VARDIR}/.dynamic
++    $tool -S dynamic | tail -n +2 | grep -F -v -- '-j ACCEPT' > \${VARDIR}/.dynamic
+ else
+     rm -f \${VARDIR}/.dynamic
+ fi
+diff -upr Shorewall.orig/Perl/Shorewall/Config.pm Shorewall/Perl/Shorewall/Config.pm
+--- Shorewall.orig/Perl/Shorewall/Config.pm	2020-09-25 01:02:15.000000000 +0300
++++ Shorewall/Perl/Shorewall/Config.pm	2024-02-01 05:57:51.908757816 +0200
+@@ -5059,7 +5059,7 @@ sub Connmark_Action() {
+ }
+ 
+ sub Basic_Ematch() {
+-    $tc && have_capability( 'BASIC_FILTER' ) && system( "$tc filter add basic help 2>&1 | egrep -q match" ) == 0;
++    $tc && have_capability( 'BASIC_FILTER' ) && system( "$tc filter add basic help 2>&1 | grep -E -q match" ) == 0;
+ }
+ 
+ sub Fwmark_Rt_Mask() {
+diff -upr Shorewall.orig/Perl/Shorewall/Misc.pm Shorewall/Perl/Shorewall/Misc.pm
+--- Shorewall.orig/Perl/Shorewall/Misc.pm	2020-09-25 01:02:15.000000000 +0300
++++ Shorewall/Perl/Shorewall/Misc.pm	2024-02-01 05:59:04.520609681 +0200
+@@ -2559,7 +2559,7 @@ EOF
+     case $COMMAND in
+         stop|clear|restore)
+             if chain_exists dynamic; then
+-                ${IPTABLES}-save -t filter | grep '^-A dynamic' | fgrep -v -- '-j ACCEPT' > ${VARDIR}/.dynamic
++                ${IPTABLES}-save -t filter | grep '^-A dynamic' | grep -F -v -- '-j ACCEPT' > ${VARDIR}/.dynamic
+             fi
+             ;;
+         *)
+@@ -2574,7 +2574,7 @@ EOF
+     case $COMMAND in
+         stop|clear|restore)
+             if chain_exists dynamic; then
+-                ${IP6TABLES}-save -t filter | grep '^-A dynamic' | fgrep -v -- '-j ACCEPT' > ${VARDIR}/.dynamic
++                ${IP6TABLES}-save -t filter | grep '^-A dynamic' | grep -F -v -- '-j ACCEPT' > ${VARDIR}/.dynamic
+             fi
+             ;;
+         *)
+diff -upr Shorewall.orig/Perl/Shorewall/Proc.pm Shorewall/Perl/Shorewall/Proc.pm
+--- Shorewall.orig/Perl/Shorewall/Proc.pm	2020-09-25 01:02:15.000000000 +0300
++++ Shorewall/Perl/Shorewall/Proc.pm	2024-02-01 05:58:57.287099242 +0200
+@@ -364,7 +364,7 @@ sub setup_log_backend($) {
+ 
+ 	    emit( "    setting=$setting",
+ 		  '',
+-		  "    fgrep -q $setting /proc/net/netfilter/nf_log || setting=$alternative",
++		  "    grep -F -q $setting /proc/net/netfilter/nf_log || setting=$alternative",
+ 		  '',
+ 		  "    if echo \$setting > $file; then",
+ 		  '       progress_message "Log Backend set to $setting"',
+diff -upr Shorewall.orig/Perl/Shorewall/Providers.pm Shorewall/Perl/Shorewall/Providers.pm
+--- Shorewall.orig/Perl/Shorewall/Providers.pm	2020-09-25 01:02:15.000000000 +0300
++++ Shorewall/Perl/Shorewall/Providers.pm	2024-02-01 05:57:42.755178775 +0200
+@@ -1061,7 +1061,7 @@ CEOF
+     }
+ 
+     emit( qq(\n) ,
+-	  qq(if ! \$IP -6 rule ls | egrep -q "32767:[[:space:]]+from all lookup (default|253)"; then) ,
++	  qq(if ! \$IP -6 rule ls | grep -E -q "32767:[[:space:]]+from all lookup (default|253)"; then) ,
+ 	  qq(    qt \$IP -6 rule add from all table $providers{default}->{id} prio 32767\n) ,
+ 	  qq(fi) ) if $family == F_IPV6;
+ 
+@@ -1078,7 +1078,7 @@ CEOF
+ 	} elsif ( ! $noautosrc ) {
+ 	    if ( $shared ) {
+ 		if ( $persistent ) {
+-		    emit( qq(if ! egrep -q "^20000:[[:space:]]+from $address lookup $id"; then),
++		    emit( qq(if ! grep -E -q "^20000:[[:space:]]+from $address lookup $id"; then),
+ 			  qq(    qt \$IP -$family rule del from $address pref 20000),
+ 			  qq(    run_ip rule add from $address pref 20000 table $id),
+ 			  qq(    echo "\$IP -$family rule del from $address pref 20000> /dev/null 2>&1" >> \${VARDIR}/undo_${table}_routing ),
+diff -upr Shorewall.orig/Perl/lib.runtime Shorewall/Perl/lib.runtime
+--- Shorewall.orig/Perl/lib.runtime	2020-09-25 00:46:24.000000000 +0300
++++ Shorewall/Perl/lib.runtime	2024-02-01 05:59:30.104557120 +0200
+@@ -116,14 +116,14 @@ setpolicy() # $1 = name of chain, $2 = p
+ # Generate a list of all network interfaces on the system
+ #
+ find_all_interfaces() {
+-    ${IP:-ip} link list | egrep '^[[:digit:]]+:' | cut -d ' ' -f2 | sed -r 's/(@.*)?:$//'
++    ${IP:-ip} link list | grep -E '^[[:digit:]]+:' | cut -d ' ' -f2 | sed -r 's/(@.*)?:$//'
+ }
+ 
+ #
+ # Generate a list of all network interfaces on the system that have an ipvX address
+ #
+ find_all_interfaces1() {
+-    ${IP:-ip} -$g_family addr list | egrep '^[[:digit:]]+:' | cut -d ' ' -f2 | sed -r 's/(@.*)?:$//'
++    ${IP:-ip} -$g_family addr list | grep -E '^[[:digit:]]+:' | cut -d ' ' -f2 | sed -r 's/(@.*)?:$//'
+ }
+ 
+ #
+@@ -679,7 +679,7 @@ interface_is_usable() # $1 = interface
+     status=0
+ 
+     if ! loopback_interface $1; then
+-	if interface_is_up $1 && [ "$(find_first_interface_address_if_any $1)" != 0.0.0.0 ] && [ -z "$($IP -$g_family link list dev $1 2> /dev/null | fgrep 'state DOWN')" ]; then
++	if interface_is_up $1 && [ "$(find_first_interface_address_if_any $1)" != 0.0.0.0 ] && [ -z "$($IP -$g_family link list dev $1 2> /dev/null | grep -F 'state DOWN')" ]; then
+ 	    if [ "$COMMAND" != enable ]; then
+ 		[ ! -f ${VARDIR}/${1}_disabled ] && run_isusable_exit $1
+ 		status=$?
+@@ -1016,7 +1016,7 @@ delete_gateway() # $! = Description of t
+ 		gateway="nexthop $gateway dead"
+ 	    fi
+ 
+-	    if eval echo $route \| fgrep -q \'$gateway\'; then
++	    if eval echo $route \| grep -F -q \'$gateway\'; then
+ 		eval route=\`echo $route \| sed \'s/$gateway/ /\'\`
+ 		run_ip route replace table $2 $route
+ 	    fi
+diff -upr Shorewall.orig/Perl/prog.footer Shorewall/Perl/prog.footer
+--- Shorewall.orig/Perl/prog.footer	2020-09-25 00:46:24.000000000 +0300
++++ Shorewall/Perl/prog.footer	2024-02-01 05:58:48.526882658 +0200
+@@ -483,7 +483,7 @@ case "$COMMAND" in
+ 	    #
+ 	    # See what it is
+ 	    #
+-	    if type $1 2> /dev/null | fgrep -q 'is a function'; then
++	    if type $1 2> /dev/null | grep -F -q 'is a function'; then
+ 		#
+ 		# It's a shell function -- call it
+ 		#
+diff -upr Shorewall.orig/configure Shorewall/configure
+--- Shorewall.orig/configure	2020-09-25 01:02:15.000000000 +0300
++++ Shorewall/configure	2024-02-01 05:59:37.588066552 +0200
+@@ -134,7 +134,7 @@ if [ -z "$vendor" ]; then
+ 	*)
+ 	    if [ -f /etc/debian_version ]; then
+ 		params[HOST]=debian
+-		ls -l /sbin/init | fgrep -q systemd &&  rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
++		ls -l /sbin/init | grep -F -q systemd &&  rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
+ 	    elif [ -f /etc/altlinux-release ] ; then
+ 		params[HOST]=alt
+ 	    elif [ -f /etc/redhat-release ]; then
+@@ -163,7 +163,7 @@ else
+     if [ $vendor = linux ]; then
+ 	rcfile=shorewallrc.default;
+     elif [ $vendor = debian -a -f /etc/debian_version ]; then
+-	ls -l /sbin/init | fgrep -q systemd && rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
++	ls -l /sbin/init | grep -F -q systemd && rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
+     else
+ 	rcfile=shorewallrc.$vendor
+     fi
+diff -upr Shorewall.orig/lib.cli-std Shorewall/lib.cli-std
+--- Shorewall.orig/lib.cli-std	2020-09-25 00:46:24.000000000 +0300
++++ Shorewall/lib.cli-std	2024-02-01 05:57:15.074417817 +0200
+@@ -1157,7 +1157,7 @@ safe_commands() {
+ 			    ;;
+ 			t)
+ 			    [ $# -eq 1 ] && fatal_error "The -t option requires a timeout value"
+-			    echo $2 | egrep -q '[[:digit:]]+[smh]' || fatal_error "The timeout value must be numeric, optionally followed by a suffix (s, m or h)"
++			    echo $2 | grep -E -q '[[:digit:]]+[smh]' || fatal_error "The timeout value must be numeric, optionally followed by a suffix (s, m or h)"
+ 			    timeout=$2
+ 			    option=
+ 			    shift;
+@@ -1331,7 +1331,7 @@ try_command() {
+ 	    ;;
+ 	2)
+ 	    handle_directory $1
+-	    echo $2 | egrep -q '[[:digit:]]+[smh]' || fatal_error "The timeout value must be numeric, optionally followed by a suffix (s, m or h)"
++	    echo $2 | grep -E -q '[[:digit:]]+[smh]' || fatal_error "The timeout value must be numeric, optionally followed by a suffix (s, m or h)"
+ 	    timeout=$2
+ 	    ;;
+ 	*)

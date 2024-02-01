@@ -1,0 +1,21 @@
+diff -upr Shorewall-init.orig/configure Shorewall-init/configure
+--- Shorewall-init.orig/configure	2020-09-25 01:02:16.000000000 +0300
++++ Shorewall-init/configure	2024-02-01 06:27:06.653348848 +0200
+@@ -134,7 +134,7 @@ if [ -z "$vendor" ]; then
+ 	*)
+ 	    if [ -f /etc/debian_version ]; then
+ 		params[HOST]=debian
+-		ls -l /sbin/init | fgrep -q systemd &&  rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
++		ls -l /sbin/init | grep -F -q systemd &&  rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
+ 	    elif [ -f /etc/altlinux-release ] ; then
+ 		params[HOST]=alt
+ 	    elif [ -f /etc/redhat-release ]; then
+@@ -163,7 +163,7 @@ else
+     if [ $vendor = linux ]; then
+ 	rcfile=shorewallrc.default;
+     elif [ $vendor = debian -a -f /etc/debian_version ]; then
+-	ls -l /sbin/init | fgrep -q systemd && rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
++	ls -l /sbin/init | grep -F -q systemd && rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
+     else
+ 	rcfile=shorewallrc.$vendor
+     fi

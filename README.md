@@ -29,6 +29,7 @@ package | details
 [app-admin/authprogs](https://github.com/11001100/authprogs) | ssh forced command wrapper
 [app-portage/epm](https://github.com/fuzzyray/epm) | rpm workalike for Gentoo Linux
 [dev-util/perf](https://perf.wiki.kernel.org/) | userland tools for Linux Performance Counters
+[net-firewall/shorewall](https://shorewall.org/) | patchset that fixes egrep, fgrep deprecation
 [sys-apps/linux-misc-apps](https://kernel.org/) | misc tools bundled with kernel sources
 dev-python/* | dependencies for kernel's make dt_binding_check
 [sys-firmware/ipw2200-firmware](http://ipw2200.sourceforge.net/) | firmware for the Intel PRO/Wireless 2200BG/2915ABG miniPCI, 2225BG PCI adapters

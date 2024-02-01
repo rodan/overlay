@@ -1,0 +1,153 @@
+diff -upr Shorewall-core.orig/configure Shorewall-core/configure
+--- Shorewall-core.orig/configure	2020-09-25 01:02:15.000000000 +0300
++++ Shorewall-core/configure	2024-02-01 05:59:53.741774754 +0200
+@@ -134,7 +134,7 @@ if [ -z "$vendor" ]; then
+ 	*)
+ 	    if [ -f /etc/debian_version ]; then
+ 		params[HOST]=debian
+-		ls -l /sbin/init | fgrep -q systemd &&  rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
++		ls -l /sbin/init | grep -F -q systemd &&  rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
+ 	    elif [ -f /etc/altlinux-release ] ; then
+ 		params[HOST]=alt
+ 	    elif [ -f /etc/redhat-release ]; then
+@@ -163,7 +163,7 @@ else
+     if [ $vendor = linux ]; then
+ 	rcfile=shorewallrc.default;
+     elif [ $vendor = debian -a -f /etc/debian_version ]; then
+-	ls -l /sbin/init | fgrep -q systemd && rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
++	ls -l /sbin/init | grep -F -q systemd && rcfile=shorewallrc.debian.systemd || rcfile=shorewallrc.debian.sysvinit
+     else
+ 	rcfile=shorewallrc.$vendor
+     fi
+diff -upr Shorewall-core.orig/lib.cli Shorewall-core/lib.cli
+--- Shorewall-core.orig/lib.cli	2020-09-25 00:46:24.000000000 +0300
++++ Shorewall-core/lib.cli	2024-02-01 06:00:01.688623248 +0200
+@@ -252,7 +252,7 @@ show_one_classifier() {
+ 
+     qt tc -s filter ls root dev $1 && tc -s filter ls root dev $device | grep -v '^$'
+     tc filter show dev $1
+-    tc class show dev $1 | fgrep 'leaf ' | fgrep -v ' hfsc' | sed 's/^.*leaf //;s/ .*//' | while read class; do
++    tc class show dev $1 | grep -F 'leaf ' | grep -F -v ' hfsc' | sed 's/^.*leaf //;s/ .*//' | while read class; do
+ 	if [ -n "$class" ]; then
+ 	    echo
+ 	    echo Node $class
+@@ -426,7 +426,7 @@ resolve_arptables() {
+ savesets() {
+     local supported
+ 
+-    supported=$(run_it $g_firewall help | fgrep savesets )
++    supported=$(run_it $g_firewall help | grep -F savesets )
+ 
+     [ -n "$supported" ] && run_it $g_firewall savesets ${g_restorepath}-ipsets 
+ }
+@@ -437,7 +437,7 @@ savesets() {
+ savesets1() {
+     local supported
+ 
+-    supported=$(run_it $g_firewall help | fgrep savesets )
++    supported=$(run_it $g_firewall help | grep -F savesets )
+ 
+     [ -n "$supported" ] && run_it $g_firewall savesets ${VARDIR}/ipsets.save && progress_message3 "The ipsets have been saved to ${VARDIR}/ipsets.save"
+ }
+@@ -696,7 +696,7 @@ find_sets() {
+     local junk
+     local setname
+ 
+-    $IPSETN -L | egrep "^Name: ${1}(_.+)?$" | while read junk setname; do echo $setname; done
++    $IPSETN -L | grep -E "^Name: ${1}(_.+)?$" | while read junk setname; do echo $setname; done
+ }
+ 
+ list_zone() {
+@@ -707,9 +707,9 @@ list_zone() {
+     determine_ipset_version
+ 
+     if [ $g_family -eq 4 ]; then
+-	sets=$($IPSETN -L | egrep "^$1(_.+)?");
++	sets=$($IPSETN -L | grep -E "^$1(_.+)?");
+      else
+-	sets=$($IPSETN -L | egrep "^6_$1(_.+)?")
++	sets=$($IPSETN -L | grep -E "^6_$1(_.+)?")
+     fi
+ 
+     [ -n "$sets" ] || sets=$(find_sets $1)
+@@ -1207,7 +1207,7 @@ show_ipsec() {
+     $IP -s -$g_family xfrm policy | spd_filter
+ 
+     heading "PFKEY SAD"
+-    $IP -s -$g_family xfrm state | egrep -v '[[:space:]]+(auth-trunc|enc )' # Don't divulge the keys
++    $IP -s -$g_family xfrm state | grep -E -v '[[:space:]]+(auth-trunc|enc )' # Don't divulge the keys
+ }
+ 
+ show_ipsec_command() {
+@@ -1533,7 +1533,7 @@ show_command() {
+ 	    if chain_exists dynamic; then
+ 		g_ipt_options="$g_ipt_options --line-numbers"
+ 		$g_tool -t filter -L dynamic $g_ipt_options  | head -n2
+-		$g_tool -t filter -L dynamic $g_ipt_options  | fgrep ACCEPT | $output_filter
++		$g_tool -t filter -L dynamic $g_ipt_options  | grep -F ACCEPT | $output_filter
+ 	    fi
+ 	    ;;
+ 	ipsec)
+@@ -1625,7 +1625,7 @@ perip_accounting() {
+ 
+ 	if [ -n "$hnames" ]; then
+ 	    for hname in $hnames; do
+-		iptaccount -l $hname | egrep '^IP:|^Show'
++		iptaccount -l $hname | grep -E '^IP:|^Show'
+ 		echo
+ 	    done
+ 	else
+@@ -3253,7 +3253,7 @@ determine_capabilities() {
+ 
+ 	if $TC filter add basic help 2>&1 | grep -q ^Usage; then
+ 	    BASIC_FILTER=Yes
+-	    $TC filter add basic help 2>&1 | egrep -q match && BASIC_EMATCH=Yes
++	    $TC filter add basic help 2>&1 | grep -E -q match && BASIC_EMATCH=Yes
+ 	fi
+ 
+ 	if $TC action add connmark help 2>&1 | grep -q ^Usage; then
+@@ -3674,7 +3674,7 @@ blacklist_command() {
+     if [ $COMMAND = 'blacklist!' ]; then
+ 	timeout='timeout 0'
+     else
+-	echo "$@" | fgrep -q ' timeout ' || timeout="timeout $g_dbltimeout"
++	echo "$@" | grep -F -q ' timeout ' || timeout="timeout $g_dbltimeout"
+     fi
+ 
+     if $IPSET -A $g_blacklistipset $@ $timeout -exist; then
+@@ -4932,12 +4932,12 @@ shorewall_cli() {
+ 		#
+ 		# First look for it here
+ 		#
+-		if type $1 2> /dev/null | fgrep -q 'is a function'; then
++		if type $1 2> /dev/null | grep -F -q 'is a function'; then
+ 		    #
+ 		    # It's a shell function -- call it
+ 		    #
+ 		    $@
+-		elif type $1 2> /dev/null | fgrep -q 'is a shell function'; then
++		elif type $1 2> /dev/null | grep -F -q 'is a shell function'; then
+ 		    #
+ 		    # It's a shell function -- call it
+ 		    #
+diff -upr Shorewall-core.orig/lib.common Shorewall-core/lib.common
+--- Shorewall-core.orig/lib.common	2020-09-25 00:46:24.000000000 +0300
++++ Shorewall-core/lib.common	2024-02-01 05:59:46.108265163 +0200
+@@ -639,7 +639,7 @@ find_first_interface_address_if_any() #
+ #Determines if the passed interface is a loopback interface
+ #
+ loopback_interface() { #$1 = Interface name
+-    [ "$1" = lo ] || $IP link show $1 | fgrep -q LOOPBACK
++    [ "$1" = lo ] || $IP link show $1 | grep -F -q LOOPBACK
+ }
+ 
+ #
+@@ -648,7 +648,7 @@ loopback_interface() { #$1 = Interface n
+ find_loopback_interfaces() {
+     local interfaces
+ 
+-    [ -x "$IP" ] && interfaces=$($IP link show | fgrep LOOPBACK | sed 's/://g' | cut -d ' ' -f 2)
++    [ -x "$IP" ] && interfaces=$($IP link show | grep -F LOOPBACK | sed 's/://g' | cut -d ' ' -f 2)
+ 
+     [ -n "$interfaces" ] && echo $interfaces || echo lo
+ }
