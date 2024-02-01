@@ -28,7 +28,6 @@ package | details
 [sys-process/daemontools-scripts](https://github.com/rodan/daemontools-scripts) | Gentoo specific daemontools wrapper scripts
 [app-admin/authprogs](https://github.com/11001100/authprogs) | ssh forced command wrapper
 [app-portage/epm](https://github.com/fuzzyray/epm) | rpm workalike for Gentoo Linux
-[dev-util/perf](https://perf.wiki.kernel.org/) | userland tools for Linux Performance Counters
 [net-firewall/shorewall](https://shorewall.org/) | patchset that fixes egrep, fgrep obsolescence. ticket is [here](https://bugs.gentoo.org/923441)
 [sys-apps/linux-misc-apps](https://kernel.org/) | misc tools bundled with kernel sources
 dev-python/* | dependencies for kernel's make dt_binding_check
