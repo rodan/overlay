@@ -6,7 +6,7 @@ recommended ```/etc/portage/repos.conf/peec.conf``` setup:
 
 ```
 [peec]
-location = /local/portage/overlay
+location = /var/db/repos/peec
 sync-type = git
 sync-uri = https://github.com/rodan/overlay.git
 sync-git-verify-commit-signature = yes
