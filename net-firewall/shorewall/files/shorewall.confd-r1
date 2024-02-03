@@ -1,3 +1,6 @@
+
+# shorewall.confd
+
 # Global start/restart/stop options
 #
 OPTIONS="-tvv"

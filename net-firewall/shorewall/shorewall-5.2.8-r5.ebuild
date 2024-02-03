@@ -66,7 +66,7 @@ if [[ ${MY_PV} = *-Beta* ]] || [[ ${MY_PV} = *-RC* ]]; then
 	unset _tmp_last_index
 	unset _tmp_suffix
 else
-	KEYWORDS="~alpha amd64 ~hppa ppc ppc64 sparc x86"
+	KEYWORDS="~alpha amd64 hppa ppc ppc64 sparc x86"
 fi
 
 SRC_URI="
@@ -89,9 +89,6 @@ REQUIRED_USE="
 	|| ( ipv4 lite4 lite6 )
 "
 
-# No build dependencies! Just plain shell scripts...
-DEPEND=""
-
 RDEPEND="
 	>=net-firewall/iptables-1.4.20
 	>=sys-apps/iproute2-3.8.0[-minimal]
@@ -111,12 +108,6 @@ RDEPEND="
 	)
 	init? ( >=sys-apps/coreutils-8.20 )
 	selinux? ( >=sec-policy/selinux-shorewall-2.20161023-r3 )
-	!net-firewall/shorewall-core
-	!net-firewall/shorewall6
-	!net-firewall/shorewall-lite
-	!net-firewall/shorewall6-lite
-	!net-firewall/shorewall-init
-	!<sys-apps/systemd-214
 "
 
 S=${WORKDIR}
@@ -213,9 +204,12 @@ src_prepare() {
 		mv "${S}"/${MY_P_LITE4} "${S}"/${MY_PN_LITE4} || die "Failed to move '${S}/${MY_P_LITE4}' to '${S}/${MY_PN_LITE4}'"
 		ebegin "Applying Gentoo-specific changes to ${MY_P_LITE4}"
 		ln -s ../shorewallrc.gentoo ${MY_PN_LITE4}/shorewallrc.gentoo || die "Failed to symlink shorewallrc.gentoo"
-		cp "${FILESDIR}"/shorewall-lite.confd-r1 "${S}"/${MY_PN_LITE4}/default.gentoo || die "Copying shorewall-lite.confd-r1 failed"
-		cp "${FILESDIR}"/shorewall-lite.initd-r3 "${S}"/${MY_PN_LITE4}/init.gentoo.sh || die "Copying shorewall-lite.initd-r2 failed"
-		cp "${FILESDIR}"/shorewall-lite.systemd "${S}"/${MY_PN_LITE4}/gentoo.service || die "Copying shorewall-lite.systemd failed"
+		cp "${FILESDIR}"/shorewall-lite.confd-r1 "${S}"/${MY_PN_LITE4}/default.gentoo ||
+			die "Copying shorewall-lite.confd-r1 failed"
+		cp "${FILESDIR}"/shorewall-lite.initd-r3 "${S}"/${MY_PN_LITE4}/init.gentoo.sh ||
+			die "Copying shorewall-lite.initd-r2 failed"
+		cp "${FILESDIR}"/shorewall-lite.systemd "${S}"/${MY_PN_LITE4}/gentoo.service ||
+			die "Copying shorewall-lite.systemd failed"
 		eend 0
 
 		pushd "${S}"/${MY_PN_LITE4} &>/dev/null || die
@@ -229,9 +223,12 @@ src_prepare() {
 		mv "${S}"/${MY_P_LITE6} "${S}"/${MY_PN_LITE6} || die "Failed to move '${S}/${MY_P_LITE6}' to '${S}/${MY_PN_LITE6}'"
 		ebegin "Applying Gentoo-specific changes to ${MY_P_LITE6}"
 		ln -s ../shorewallrc.gentoo ${MY_PN_LITE6}/shorewallrc.gentoo || die "Failed to symlink shorewallrc.gentoo"
-		cp "${FILESDIR}"/shorewall-lite.confd-r1 "${S}"/${MY_PN_LITE6}/default.gentoo || die "Copying shorewall-lite.confd-r1 failed"
-		cp "${FILESDIR}"/shorewall-lite.initd-r3 "${S}"/${MY_PN_LITE6}/init.gentoo.sh || die "Copying shorewall-lite.initd-r2 failed"
-		cp "${FILESDIR}"/shorewall6-lite.systemd "${S}"/${MY_PN_LITE6}/gentoo.service || die "Copying shorewall6-lite.systemd failed"
+		cp "${FILESDIR}"/shorewall-lite.confd-r1 "${S}"/${MY_PN_LITE6}/default.gentoo ||
+			die "Copying shorewall-lite.confd-r1 failed"
+		cp "${FILESDIR}"/shorewall-lite.initd-r3 "${S}"/${MY_PN_LITE6}/init.gentoo.sh ||
+			die "Copying shorewall-lite.initd-r2 failed"
+		cp "${FILESDIR}"/shorewall6-lite.systemd "${S}"/${MY_PN_LITE6}/gentoo.service ||
+			die "Copying shorewall6-lite.systemd failed"
 		eend 0
 
 		pushd "${S}"/${MY_PN_LITE6} &>/dev/null || die
@@ -245,10 +242,14 @@ src_prepare() {
 		mv "${S}"/${MY_P_INIT} "${S}"/${MY_PN_INIT} || die "Failed to move '${S}/${MY_P_INIT}' to '${S}/${MY_PN_INIT}'"
 		ebegin "Applying Gentoo-specific changes to ${MY_P_INIT}"
 		ln -s ../shorewallrc.gentoo ${MY_PN_INIT}/shorewallrc.gentoo || die "Failed to symlink shorewallrc.gentoo"
-		cp "${FILESDIR}"/shorewall-init.confd "${S}"/${MY_PN_INIT}/default.gentoo || die "Copying shorewall-init.confd failed"
-		cp "${FILESDIR}"/shorewall-init.initd "${S}"/${MY_PN_INIT}/init.gentoo.sh || die "Copying shorewall-init.initd failed"
-		cp "${FILESDIR}"/shorewall-init.systemd "${S}"/${MY_PN_INIT}/gentoo.service || die "Copying shorewall-init.systemd failed"
-		cp "${FILESDIR}"/shorewall-init.readme "${S}"/${MY_PN_INIT}/shorewall-init.README.Gentoo.txt || die "Copying shorewall-init.systemd failed"
+		cp "${FILESDIR}"/shorewall-init.confd "${S}"/${MY_PN_INIT}/default.gentoo ||
+			die "Copying shorewall-init.confd failed"
+		cp "${FILESDIR}"/shorewall-init.initd "${S}"/${MY_PN_INIT}/init.gentoo.sh ||
+			die "Copying shorewall-init.initd failed"
+		cp "${FILESDIR}"/shorewall-init.systemd "${S}"/${MY_PN_INIT}/gentoo.service ||
+			die "Copying shorewall-init.systemd failed"
+		cp "${FILESDIR}"/shorewall-init.readme "${S}"/${MY_PN_INIT}/shorewall-init.README.Gentoo.txt ||
+			die "Copying shorewall-init.systemd failed"
 		eend 0
 
 		eprefixify "${S}"/${MY_PN_INIT}/init.gentoo.sh
@@ -339,7 +340,8 @@ src_install() {
 
 		if [[ -f "${ED}/usr/share/shorewall-init/ifupdown" ]]; then
 			# This script isn't supported on Gentoo
-			rm -rf "${ED}"/usr/share/shorewall-init/ifupdown || die "Removing \"${ED}/usr/share/shorewall-init/ifupdown\" failed"
+			rm -rf "${ED}"/usr/share/shorewall-init/ifupdown ||
+				die "Removing \"${ED}/usr/share/shorewall-init/ifupdown\" failed"
 		fi
 	fi
 

@@ -1,3 +1,6 @@
+
+# shorewall-lite.confd
+
 # Global start/restart/stop options
 #
 OPTIONS="-tvv"
