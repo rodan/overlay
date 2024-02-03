@@ -65,7 +65,7 @@ TARGETS_SIMPLE=(
 	tools/cgroup/cgroup_event_listener.c
 	tools/laptop/freefall/freefall.c
 	tools/testing/selftests/net/timestamping.c
-	tools/vm/slabinfo.c
+	tools/mm/slabinfo.c
 	usr/gen_init_cpio.c
 	# Broken:
 	#tools/lguest/lguest.c # fails to compile
@@ -122,6 +122,8 @@ src_prepare() {
 		-e '/^nosy-dump.*CFLAGS/d' \
 		-e '/^nosy-dump.*CPPFLAGS/s,CPPFLAGS =,CPPFLAGS +=,g' \
 		"${S}"/tools/firewire/Makefile
+
+	eapply "${FILESDIR}/iio_utils.patch"
 
 	eapply_user
 }
