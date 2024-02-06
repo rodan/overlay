@@ -5,7 +5,7 @@ EAPI=8
 
 MY_PN="atlas430"
 #MY_PV="${PV}"
-MY_PV="e86e3a4c7755659bd8e9aa8830b7540a15d1fba8"
+MY_PV="75c7b752fcc2d467efc3936b0d7ff97b2c62dc48"
 MY_P="${PN}-${MY_PV}"
 
 DESCRIPTION="library of HAL functions for MSP430 microcontrollers"
