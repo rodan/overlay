@@ -23,6 +23,8 @@ package | details
 --- | ---
 [app-admin/laboule](https://github.com/rodan/laboule) | iptables-based banning helper daemon
 [app-dicts/dicpoli](https://github.com/rodan/dictionar_poliglot_de_aeronautica) | multilingual aeronautical dictionary compatible with dictd, stardict and kindle (de en es fr it ro) 3759 terms
+[dev-embedded/atlas430](https://github.com/rodan/atlas430) | library of HAL functions for MSP430 microcontrollers
+[dev-embedded/msp430-gcc-bin](https://www.ti.com/tool/MSP430-GCC-OPENSOURCE) | open source toolchain for MSP430 microcontrollers
 [games-engines/mcarpet2](https://github.com/rodan/magic_carpet_2) | recode of Buffrog's Magic Carpet 2 game now with OpenAL-based directional sounds and support for modern controllers and joysticks
 [media-gfx/thpp](https://github.com/rodan/thpp) | thermal processing panel - viewer and analyzer of infrared images compatible with FLIR and IRTIS cameras
 [net-misc/iotcpd](https://github.com/rodan/iotcpd) | a stdio to tcp redirector daemon
