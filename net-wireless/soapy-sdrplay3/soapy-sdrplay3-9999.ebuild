@@ -15,7 +15,7 @@ else
 	HASH_COMMIT="c4bb9afd17fd6ff2da23317f1fc98cfff3806a1d"
 	SRC_URI="https://github.com/pothosware/SoapySDRPlay3/archive/${HASH_COMMIT}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/SoapySDRPlay3-${HASH_COMMIT}"
-	KEYWORDS="~amd64 ~arm ~riscv ~x86"
+	KEYWORDS="~amd64"
 fi
 
 LICENSE="MIT"

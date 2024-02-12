@@ -3,9 +3,7 @@
 
 EAPI=8
 
-MULTILIB_COMPAT=( abi_x86_64 )
-
-inherit unpacker udev multilib-minimal systemd
+inherit unpacker udev systemd
 
 MY_PV_1=$(ver_cut 1)
 MY_PV_12=$(ver_cut 1-2)
@@ -16,14 +14,13 @@ SRC_URI="http://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${PV}.run"
 
 LICENSE="SDRplay"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64"
 IUSE="systemd"
 
 DEPEND="virtual/libusb:1
 	virtual/udev
 	systemd? ( sys-apps/systemd )"
 
-REQUIRED_USE="abi_x86_64"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}"
@@ -32,7 +29,7 @@ QA_PREBUILT="usr/lib64/libsdrplay_api.so.${MY_PV_12}
 usr/lib/libsdrplay_api.so.${MY_PV_12}
 usr/bin/sdrplay_apiService"
 
-multilib_src_install_all() {
+src_install() {
 	doheader -r inc/*.h
 
 	insinto /etc/udev/hwdb.d
@@ -46,17 +43,13 @@ multilib_src_install_all() {
 	fi
 
 	newinitd "${FILESDIR}/${PN}.initd" ${PN}
-}
 
-multilib_src_install() {
-	if [ "${MULTILIB_ABI_FLAG}" = "abi_x86_64" ]; then
+	if use amd64 ; then
 		dolib.so "${S}/x86_64/libsdrplay_api.so.${MY_PV_12}"
-	fi
-
-	if multilib_is_native_abi; then
-		if [ "${MULTILIB_ABI_FLAG}" = "abi_x86_64" ]; then
-			dobin "${S}/x86_64/sdrplay_apiService"
-		fi
+		dobin "${S}/x86_64/sdrplay_apiService"
+	elif use arm64 ; then
+		dolib.so "${S}/aarch64/libsdrplay_api.so.${MY_PV_12}"
+		dobin "${S}/aarch64/sdrplay_apiService"
 	fi
 
 	dosym libsdrplay_api.so.${MY_PV_12} "/usr/$(get_libdir)/libsdrplay_api.so.${MY_PV_1}"
