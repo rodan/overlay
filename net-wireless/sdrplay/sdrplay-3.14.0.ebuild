@@ -29,6 +29,13 @@ QA_PREBUILT="usr/lib64/libsdrplay_api.so.${MY_PV_12}
 usr/lib/libsdrplay_api.so.${MY_PV_12}
 usr/bin/sdrplay_apiService"
 
+pkg_pretend() {
+	# Protect against people using autounmask overzealously
+	if !( use amd64 || use arm64 ); then
+		die "this binary package only works on amd64 and arm64"
+	fi
+}
+
 src_install() {
 	doheader -r inc/*.h
 
