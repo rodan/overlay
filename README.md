@@ -4,6 +4,11 @@ An overlay that contains ebuilds for my open-source projects and a safe heaven f
 
 ### setup
 
+```
+eselect repository enable peec
+emerge sec-keys/openpgp-keys-petrerodan
+```
+
 recommended ```/etc/portage/repos.conf/peec.conf``` configuration:
 
 ```
@@ -35,7 +40,7 @@ package | details
 [app-portage/epm](https://github.com/fuzzyray/epm) | rpm workalike for Gentoo Linux
 [net-firewall/shorewall](https://shorewall.org/) | patchset that fixes egrep, fgrep obsolescence. ticket is [here](https://bugs.gentoo.org/923441)
 [sys-apps/linux-misc-apps](https://kernel.org/) | misc tools bundled with kernel sources
-net-wireless/* | up-to-date tools used by [SDRPlay](https://www.sdrplay.com/) software defined radio devices
 dev-python/* | dependencies for kernel's make dt_binding_check
+net-wireless/* | up-to-date tools used by [SDRPlay](https://www.sdrplay.com/) software defined radio devices
 
 ![screenshot](./issue.png)
