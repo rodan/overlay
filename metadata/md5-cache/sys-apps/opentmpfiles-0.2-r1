@@ -1,0 +1,13 @@
+DEFINED_PHASES=install postinst prepare
+DESCRIPTION=A standalone utility to process systemd-style tmpfiles.d files
+EAPI=8
+HOMEPAGE=https://github.com/openrc/opentmpfiles
+INHERIT=prefix
+IUSE=selinux
+KEYWORDS=amd64 arm arm64 x86
+LICENSE=BSD-2
+RDEPEND=selinux? ( sec-policy/selinux-base-policy )
+SLOT=0
+SRC_URI=https://github.com/openrc/opentmpfiles/archive/0.2.tar.gz -> opentmpfiles-0.2.tar.gz
+_eclasses_=prefix	eab3c99d77fe00506c109c8a736186f7
+_md5_=6a3077739a63f4e35c8209ca1d499f4a

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install
+DEPEND=dev-db/sqlite dict? ( app-text/dictd )
+DESCRIPTION=multilingual aeronautical dictionary
+EAPI=8
+HOMEPAGE=https://github.com/rodan/dictionar_poliglot_de_aeronautica
+IUSE=l10n_de l10n_en l10n_es l10n_fr l10n_it l10n_ro dict stardict
+KEYWORDS=amd64
+LICENSE=CC0-1.0
+RDEPEND=dev-db/sqlite dict? ( app-text/dictd )
+REQUIRED_USE=( || ( dict stardict ) ) ( || ( l10n_de l10n_en l10n_es l10n_fr l10n_it l10n_ro ) )
+SLOT=0
+SRC_URI=https://github.com/rodan/dictionar_poliglot_de_aeronautica/archive/20240109.tar.gz -> dicpoli-20240109.tar.gz
+_md5_=b5e59faf5da03c602cfb4dc58319afb5

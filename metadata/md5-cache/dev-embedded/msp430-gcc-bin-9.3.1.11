@@ -1,0 +1,11 @@
+BDEPEND=app-arch/unzip
+DEFINED_PHASES=install pretend
+DESCRIPTION=open source compiler for MSP430 microcontrollers
+EAPI=8
+HOMEPAGE=https://www.ti.com/tool/MSP430-GCC-OPENSOURCE
+KEYWORDS=amd64
+LICENSE=GPL-3
+RESTRICT=bindist mirror strip
+SLOT=0
+SRC_URI=https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-LlCjWuAbzH/9.3.1.2/msp430-gcc-9.3.1.11_linux64.tar.bz2 https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-LlCjWuAbzH/9.3.1.2/msp430-gcc-support-files-1.212.zip
+_md5_=73a7a59e95840ea672a4ee2fbde1187b

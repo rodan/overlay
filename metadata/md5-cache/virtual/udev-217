@@ -1,0 +1,8 @@
+DEFINED_PHASES=-
+DESCRIPTION=Virtual to select between different udev daemon providers
+EAPI=8
+IUSE=systemd
+KEYWORDS=amd64 arm arm64 x86
+RDEPEND=systemd? ( >=sys-apps/systemd-217 ) !systemd? ( || ( sys-fs/eudev ) )
+SLOT=0
+_md5_=38907c64d61112f34cf448f6262dc7bd

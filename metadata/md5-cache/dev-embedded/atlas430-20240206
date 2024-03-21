@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install
+DESCRIPTION=library of HAL functions for MSP430 microcontrollers
+EAPI=8
+HOMEPAGE=https://github.com/rodan/atlas430
+KEYWORDS=amd64 x86
+LICENSE=BSD
+RESTRICT=strip
+SLOT=0
+SRC_URI=https://github.com/rodan/atlas430/archive/e86e3a4c7755659bd8e9aa8830b7540a15d1fba8.tar.gz -> atlas430-e86e3a4c7755659bd8e9aa8830b7540a15d1fba8.tar.gz
+_md5_=c9d0c6528291d85d23cc05ecdd024618

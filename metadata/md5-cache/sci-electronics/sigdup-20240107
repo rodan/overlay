@@ -1,0 +1,12 @@
+DEFINED_PHASES=install prepare
+DEPEND=dev-libs/libzip
+DESCRIPTION=sigdup - replay PulseView digital signals on the pins of a microcontroller
+EAPI=8
+HOMEPAGE=https://github.com/rodan/sigdup
+IUSE=debug
+KEYWORDS=amd64 x86
+LICENSE=GPL-3
+RDEPEND=dev-libs/libzip
+SLOT=0
+SRC_URI=https://github.com/rodan/sigdup/archive/20240107.tar.gz -> sigdup-20240107.tar.gz
+_md5_=c963aaa90bbc753c72e5e96dea66cfad
