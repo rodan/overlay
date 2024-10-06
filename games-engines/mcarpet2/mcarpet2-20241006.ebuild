@@ -35,8 +35,8 @@ SDL2_CMAKE_MOD_PV="ad006a3daae65a612ed87415037e32188b81071e"
 SDL2_CMAKE_MOD_P="${SDL2_CMAKE_MOD_PN}-${SDL2_CMAKE_MOD_PV}"
 
 MY_PN="magic_carpet_2"
-#MY_PV="${PV}"
-MY_PV="9ead7fff7ec10f21e59d5b9fa6f302b1158ec9eb"
+MY_PV="${PV}"
+#MY_PV="9ead7fff7ec10f21e59d5b9fa6f302b1158ec9eb"
 MY_P="${PN}-${MY_PV}"
 
 DESCRIPTION="recode of Bullfrog's Magic Carpet 2 game"
@@ -122,7 +122,6 @@ src_configure() {
 src_install() {
 	insinto /usr/share/mcarpet2
 	dodir /usr/share/mcarpet2
-	newins "${S}/assets/config.ini" config.ini
 	newins "${S}/assets/config_3d_pro.ini" config_3d_pro.ini
 	newins "${S}/assets/config_attack_3.ini" config_attack_3.ini
 	newins "${S}/assets/config_xbox.ini" config_xbox.ini

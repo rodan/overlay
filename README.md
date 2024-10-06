@@ -43,4 +43,8 @@ package | details
 dev-python/* | dependencies for kernel's make dt_binding_check
 net-wireless/* | up-to-date tools used by [SDRPlay](https://www.sdrplay.com/) software defined radio devices
 
+### see also
+
+in case you were looking for my FreeBSD port overlay it's located [here](https://github.com/rodan/freebsd-overlay).
+
 ![screenshot](./issue.png)
