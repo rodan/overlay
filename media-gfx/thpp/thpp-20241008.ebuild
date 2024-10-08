@@ -4,19 +4,19 @@
 EAPI=8
 
 IMGUI_PN="imgui"
-IMGUI_PV="1.90-docking"
+IMGUI_PV="1.91.3-docking"
 IMGUI_P="${IMGUI_PN}-${IMGUI_PV}"
 
 IMPLOT_PN="implot"
-IMPLOT_PV="0.16"
-IMPLOT_P="${IMPLOT_PN}-v${IMPLOT_PV}"
+IMPLOT_PV="f156599faefe316f7dd20fe6c783bf87c8bb6fd9"
+IMPLOT_P="${IMPLOT_PN}-${IMPLOT_PV}"
 
 LODEPNG_PN="lodepng"
-LODEPNG_COMMIT="d398e0f10d152a5d17fa30463474dc9f56523f9c"
+LODEPNG_COMMIT="ed3c5f14b136c936d615ee3b38aaa7e7e642f12c"
 LODEPNG_P="${LODEPNG_PN}-${LODEPNG_COMMIT}"
 
 TINYTIFF_PN="TinyTIFF"
-TINYTIFF_PV="3.0.0.0"
+TINYTIFF_PV="4.0.1.0"
 TINYTIFF_P="${TINYTIFF_PN}-${TINYTIFF_PV}"
 
 MY_PV="${PV}"
@@ -27,7 +27,7 @@ DESCRIPTION="Thermal Processing Panel - a viewer and analyzer of infrared images
 HOMEPAGE="https://github.com/rodan/thpp"
 SRC_URI="https://github.com/rodan/${PN}/archive/${MY_PV}.tar.gz -> ${MY_P}.tar.gz
 	https://github.com/ocornut/${IMGUI_PN}/archive/v${IMGUI_PV}.tar.gz -> ${IMGUI_P}.tar.gz
-	https://github.com/epezent/${IMPLOT_PN}/archive/v${IMPLOT_PV}.tar.gz -> ${IMPLOT_P}.tar.gz
+	https://github.com/epezent/${IMPLOT_PN}/archive/${IMPLOT_PV}.tar.gz -> ${IMPLOT_P}.tar.gz
 	https://github.com/jkriege2/${TINYTIFF_PN}/archive/${TINYTIFF_PV}.tar.gz -> ${TINYTIFF_P}.tar.gz
 	https://github.com/lvandeve/${LODEPNG_PN}/archive/${LODEPNG_COMMIT}.tar.gz -> ${LODEPNG_P}.tar.gz
 "
@@ -39,12 +39,9 @@ IUSE="debug"
 
 DEPEND="media-libs/libglvnd
 	media-libs/glfw
-	sys-devel/gcc:*[openmp]
-	x11-libs/libX11
-	x11-libs/libxcb
-	x11-libs/libXau
-	x11-libs/libXdmcp"
-RDEPEND="${DEPEND}"
+	sys-devel/gcc:*[openmp]"
+RDEPEND="${DEPEND}
+	media-libs/exiftool"
 S=${WORKDIR}/${MY_P}/src
 
 src_unpack() {
