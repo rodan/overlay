@@ -21,7 +21,7 @@ IUSE="doc"
 
 RDEPEND="
 	dev-python/ruamel-yaml
-	dev-python/pylibfdt
+	sys-apps/dtc[python]
 "
 
 python_install_all() {
