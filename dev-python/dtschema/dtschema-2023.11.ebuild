@@ -20,8 +20,10 @@ KEYWORDS="amd64"
 IUSE="doc"
 
 RDEPEND="
-	dev-python/ruamel-yaml
-	dev-python/pylibfdt
+	sys-apps/dtc[python]
+	>dev-python/ruamel-yaml-0.15.69[${PYTHON_USEDEP}]
+	<dev-python/jsonschema-4.18[${PYTHON_USEDEP}]
+	dev-python/rfc3987[${PYTHON_USEDEP}]
 "
 
 python_install_all() {
