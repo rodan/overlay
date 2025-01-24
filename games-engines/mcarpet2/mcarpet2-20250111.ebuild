@@ -125,7 +125,9 @@ src_install() {
 	newins "${S}/assets/config_3d_pro.ini" config_3d_pro.ini
 	newins "${S}/assets/config_attack_3.ini" config_attack_3.ini
 	newins "${S}/assets/config_xbox.ini" config_xbox.ini
-	newins "${WORKDIR}/${MY_PN}-${MY_PV}_build/src/remc2" remc2
+
+	exeinto /usr/share/mcarpet2
+	doexe "${WORKDIR}/${MY_PN}-${MY_PV}_build/src/remc2"
 
 	insinto /usr/share/mcarpet2/font
 	dodir /usr/share/mcarpet2/font
