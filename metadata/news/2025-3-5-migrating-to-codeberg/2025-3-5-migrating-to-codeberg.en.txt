@@ -1,0 +1,29 @@
+Title: Codeberg Migration
+Author: Petre Rodan <petre.rodan@subdimension.ro>
+Content-Type: text/plain
+Posted: 2025-03-05
+Revision: 1
+News-Item-Format: 1.0
+
+As of now the peec overlay repository has moved from Github to Codeberg.
+
+Those who started using peec's Gentoo overlay before the migration will
+need to re-add the repository to receive new updates.
+
+For '/etc/portage/repos.conf'
+=============================
+Simply change the 'sync-uri' field to the url below.
+
+https://codeberg.org/subDIMENSION/gentoo-overlay.git
+
+You may need to manually delete the repository and re-sync.
+
+For 'eselect repository'
+========================
+1. Remove the overlay via
+
+> eselect repository remove -f peec
+
+2. then re-add the overlay via
+
+> eselect repository add peec git https://codeberg.org/subDIMENSION/gentoo-overlay.git

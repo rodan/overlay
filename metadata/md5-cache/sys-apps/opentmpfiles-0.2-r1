@@ -9,5 +9,5 @@ LICENSE=BSD-2
 RDEPEND=selinux? ( sec-policy/selinux-base-policy )
 SLOT=0
 SRC_URI=https://github.com/openrc/opentmpfiles/archive/0.2.tar.gz -> opentmpfiles-0.2.tar.gz
-_eclasses_=prefix	eab3c99d77fe00506c109c8a736186f7
+_eclasses_=prefix	c3c4c93ebda319c0fa7ed6f942ba1010
 _md5_=6a3077739a63f4e35c8209ca1d499f4a

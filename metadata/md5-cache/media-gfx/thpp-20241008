@@ -1,0 +1,12 @@
+DEFINED_PHASES=install prepare unpack
+DEPEND=media-libs/libglvnd media-libs/glfw sys-devel/gcc:*[openmp]
+DESCRIPTION=Thermal Processing Panel - a viewer and analyzer of infrared images
+EAPI=8
+HOMEPAGE=https://github.com/rodan/thpp
+IUSE=debug
+KEYWORDS=amd64 x86
+LICENSE=GPL-3
+RDEPEND=media-libs/libglvnd media-libs/glfw sys-devel/gcc:*[openmp] media-libs/exiftool
+SLOT=0
+SRC_URI=https://github.com/rodan/thpp/archive/20241008.tar.gz -> thpp-20241008.tar.gz https://github.com/ocornut/imgui/archive/v1.91.3-docking.tar.gz -> imgui-1.91.3-docking.tar.gz https://github.com/epezent/implot/archive/f156599faefe316f7dd20fe6c783bf87c8bb6fd9.tar.gz -> implot-f156599faefe316f7dd20fe6c783bf87c8bb6fd9.tar.gz https://github.com/jkriege2/TinyTIFF/archive/4.0.1.0.tar.gz -> TinyTIFF-4.0.1.0.tar.gz https://github.com/lvandeve/lodepng/archive/ed3c5f14b136c936d615ee3b38aaa7e7e642f12c.tar.gz -> lodepng-ed3c5f14b136c936d615ee3b38aaa7e7e642f12c.tar.gz
+_md5_=9a6a43e012201b661021ab4914f790e3

@@ -1,0 +1,15 @@
+BDEPEND=dev-build/make >=dev-build/cmake-3.20.5
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=media-libs/libglvnd media-libs/glfw media-libs/openal media-libs/libsdl2 media-libs/sdl2-mixer media-libs/sdl2-image media-libs/sdl2-ttf media-libs/libpng dev-libs/boost dev-libs/spdlog net-misc/wget app-arch/tar app-arch/p7zip app-cdr/bchunk app-cdr/cdrdao
+DESCRIPTION=recode of Bullfrog's Magic Carpet 2 game
+EAPI=8
+HOMEPAGE=https://github.com/rodan/magic_carpet_2
+INHERIT=cmake flag-o-matic
+IUSE=debug imgui
+KEYWORDS=amd64 x86
+LICENSE=MIT
+RDEPEND=media-libs/libglvnd media-libs/glfw media-libs/openal media-libs/libsdl2 media-libs/sdl2-mixer media-libs/sdl2-image media-libs/sdl2-ttf media-libs/libpng dev-libs/boost dev-libs/spdlog net-misc/wget app-arch/tar app-arch/p7zip app-cdr/bchunk app-cdr/cdrdao
+SLOT=0
+SRC_URI=https://github.com/rodan/magic_carpet_2/archive/20250111.tar.gz -> mcarpet2-20250111.tar.gz https://github.com/ocornut/imgui/archive/v1.91.3.tar.gz -> imgui-1.91.3.tar.gz https://github.com/MathieuTurcotte/findfirst/archive/2c4733bb77cb3357c691c7a6b7a46baeed2d5fe1.tar.gz -> findfirst-2c4733bb77cb3357c691c7a6b7a46baeed2d5fe1.tar.gz https://github.com/benhoyt/inih/archive/r58.tar.gz -> inih-r58.tar.gz https://github.com/aminosbh/sdl2-cmake-modules/archive/ad006a3daae65a612ed87415037e32188b81071e.tar.gz -> sdl2-cmake-modules-ad006a3daae65a612ed87415037e32188b81071e.tar.gz
+_eclasses_=cmake	10a50dfaf728b802fcfd37f8d0da9056	flag-o-matic	357f1a896fbedcd06e5ce55419c49eb9	multilib	b2a329026f2e404e9e371097dda47f96	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	toolchain-funcs	6afdb6107430c1832ca7e16aacbf8fa1	xdg-utils	42869b3c8d86a70ef3cf75165a395e09
+_md5_=ae60e03141148d1688af11e403a1fd1d
