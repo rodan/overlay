@@ -5,7 +5,7 @@ EAPI=8
 
 DESCRIPTION="OpenPGP keys used by Petre Rodan"
 HOMEPAGE="https://subdimension.ro"
-SRC_URI="https://openpgpkey.subdimension.ro/.well-known/openpgpkey/subdimension.ro/hu/w6rzxnjwt1aag7tjxgi19j844woafo1j?l=petre.rodan -> ${P}.gpg"
+SRC_URI="https://openpgpkey.subdimension.ro/.well-known/openpgpkey/subdimension.ro/hu/hdcbgy7z3k5fbfpn6ux8zaydhso5qoqt -> ${P}.gpg"
 
 LICENSE="public-domain"
 SLOT="0"
